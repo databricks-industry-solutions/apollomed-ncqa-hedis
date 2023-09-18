@@ -112,7 +112,7 @@ res_df.write.mode("overwrite").saveAsTable(f"{db}.member_measure")
 # MAGIC
 # MAGIC ### Report With SQL
 # MAGIC
-# MAGIC With results written to the `member_measure` table, it's simple to aggregate in SQL, or any BI reporting tool.
+# MAGIC With results written to the `member_measure` table, it's simple to aggregate in SQL, or any downstream BI reporting tool.
 # MAGIC
 # MAGIC #### Notes
 # MAGIC - Race and Ethnicity variables do not correspond to realistic distribution

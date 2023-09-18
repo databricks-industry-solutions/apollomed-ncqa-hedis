@@ -2,7 +2,7 @@
 # MAGIC %md
 # MAGIC
 # MAGIC # Running a Quality Measure
-# MAGIC In this notebook, we illustrate how to run the Apollomed Velox Quality engine for a single measure (`HBD`) on a single member. Next in `02-aggregate-analysis`, we upsample this member's data and show how to use the quality engine results for aggregate analyses.
+# MAGIC In this notebook, we illustrate how to run the Apollomed quality engine for a single measure (`HBD`) on a single member. Next in `02-aggregate-analysis`, we upsample this member's data and show how to use the quality engine results for aggregate analyses.
 
 # COMMAND ----------
 
@@ -63,6 +63,18 @@ pprint(member_data)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC
+# MAGIC ### TODO - explain logistics of installing chedispy
+
+# COMMAND ----------
+
+# TODO - check that chedispy is installed
+%sh
+pip install chedispy
+
+# COMMAND ----------
+
 # Import the HBDEngine
 from chedispy.hbd import HBDEngine
 from chedispy.utils import load_dmap_default
@@ -99,7 +111,7 @@ for i, val in enumerate(res, 1):
 # MAGIC %md
 # MAGIC
 # MAGIC #### Concrete Evidence
-# MAGIC `chedispy` gives detail regarding *why* a given member meets denominator and numerator criteria. Inclusion "events" in for both the denominator and numerator criteria include claims detail or logical hints to facilitate root-cause tracing.
+# MAGIC `chedispy` gives detail regarding *why* a given member meets denominator and numerator criteria. Inclusion "events" for both the denominator and numerator criteria include claims detail or logical hints to facilitate root-cause tracing.
 # MAGIC
 # MAGIC ```
 # MAGIC 'measure_id': 'HBD2',
@@ -152,7 +164,7 @@ pprint(res[1])
 # MAGIC %md
 # MAGIC
 # MAGIC ## A Good News Story
-# MAGIC By `2023-04-12`, a follow up laboratory test indicated an improved Hemoglobin A1c level of 7.5% (LOINC code: `4548-4`). The medication regimen has caused improvement. Note however, in the absense of an improved HbA1C value, the quality management team would likely prompt clinical teams to reach out to the patient if they have not already.
+# MAGIC By `2023-04-12`, a follow up laboratory test indicated an improved Hemoglobin A1c level of 7.5% (LOINC code: `4548-4`). The medication regimen has led to improvement. Note however, in the absense of an improved HbA1C value, the quality management team would likely prompt clinical teams to reach out to the patient if they have not already.
 
 # COMMAND ----------
 
