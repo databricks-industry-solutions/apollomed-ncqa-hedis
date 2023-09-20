@@ -3,42 +3,24 @@
 [![CLOUD](https://img.shields.io/badge/CLOUD-ALL-blue?logo=googlecloud&style=for-the-badge)](https://cloud.google.com/databricks)
 [![POC](https://img.shields.io/badge/POC-10_days-green?style=for-the-badge)](https://databricks.com/try-databricks)
 
-## Business Problem
-<List of the business use case the solution accelerator address>
+## Scalable, In-House Quality Measurement with an NCQA-Certified Engine
+Quality measurement is a core component of value-based care contracting. Unfortunately, data regarding quality performance are typically delivered via diversely-formatted Excel spreadsheets, acquired from various payors in non-automated ways. A recent industry shift has led to a consolidation of the data sources underlying quality metrics in *curated delta lakes*, often with comparatively stable ingestions on industry standard formats. For the first time, *it is possible for many organizations to measure their quality performance daily, at scale, using internal data sources.* The ApolloMed Velox Quality engine facilitates this use case, allowing certified HEDIS measures to be executed in parallel.
 
-## Scope
-<How we expect the user to use this content>
-
-___
-<john.doe@databricks.com>
-
+In this solution accelerator, we illustrate how to use the ApolloMed Velox Quality engine to:
+1. `01-member-sample`: Generate a [HEDIS-certified HBD](https://www.ncqa.org/hedis/measures/comprehensive-diabetes-care/) measure result based on a simple JSON data source
+2. `02-scalable-processing`: Apply the quality engine to a larger record-set and analyze the results
 ___
 
-
-IMAGE TO REFERENCE ARCHITECTURE
+![image](https://velox-public-image.s3.amazonaws.com/quality_engine_diagram.png)
 
 ___
 
 &copy; 2022 Databricks, Inc. All rights reserved. The source in this notebook is provided subject to the Databricks License [https://databricks.com/db-license-source].  All included or referenced third party libraries are subject to the licenses set forth below.
 
-| library                                | description             | license    | source                                              |
+| Library Name   | Library License | Library License URL |  Library Source URL |
 |----------------------------------------|-------------------------|------------|-----------------------------------------------------|
-| PyYAML                                 | Reading Yaml files      | MIT        | https://github.com/yaml/pyyaml                      |
-
-## Getting started
-
-Although specific solutions can be downloaded as .dbc archives from our websites, we recommend cloning these repositories onto your databricks environment. Not only will you get access to latest code, but you will be part of a community of experts driving industry best practices and re-usable solutions, influencing our respective industries. 
-
-<img width="500" alt="add_repo" src="https://user-images.githubusercontent.com/4445837/177207338-65135b10-8ccc-4d17-be21-09416c861a76.png">
-
-To start using a solution accelerator in Databricks simply follow these steps: 
-
-1. Clone solution accelerator repository in Databricks using [Databricks Repos](https://www.databricks.com/product/repos)
-2. Attach the `RUNME` notebook to any cluster and execute the notebook via Run-All. A multi-step-job describing the accelerator pipeline will be created, and the link will be provided. The job configuration is written in the RUNME notebook in json format. 
-3. Execute the multi-step-job to see how the pipeline runs. 
-4. You might want to modify the samples in the solution accelerator to your need, collaborate with other users and run the code samples against your own data. To do so start by changing the Git remote of your repository  to your organization’s repository vs using our samples repository (learn more). You can now commit and push code, collaborate with other user’s via Git and follow your organization’s processes for code development.
-
-The cost associated with running the accelerator is the user's responsibility.
+| Apache Spark     | Apache License 2.0 | 	https://github.com/apache/spark/blob/master/LICENSE | 	https://github.com/apache/spark/tree/master/python/pyspark |
+| chedispy | [Proprietary License - Apollomed Medical Holdings Inc.](https://www.apollomed.net/) | | |
 
 
 ## Project support 
