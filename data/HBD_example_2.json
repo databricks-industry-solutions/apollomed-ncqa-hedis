@@ -1,0 +1,90 @@
+{
+    "sex": "M",
+    "effmo_lst": [
+        {
+            "t_s": "2022-08-01",
+            "t_e": "2023-01-31",
+            "payer": "MCR"
+        },
+        {
+            "t_s": "2023-02-01",
+            "t_e": "2023-12-31",
+            "payer": "MMP"
+        }
+    ],
+    "t_enroll": "2022-08-01",
+    "dob": "1957-02-01",
+    "race1": "2028-9",
+    "ethn_res": "ASKU",
+    "race_ds_res": "21",
+    "ethn_ds_res": "91",
+    "records": [
+        {
+            "clm_id": "5",
+            "loinc": [
+                "4548-4"
+            ],
+            "time": "2023-04-12",
+            "supp_data": true,
+            "file": "lab",
+            "labvalues": [
+                {
+                    "loinc": "4548-4",
+                    "labvalue": "7.5"
+                }
+            ]
+        },
+        {
+            "time": "2023-01-10",
+            "file": "pharm",
+            "clm_id": "4",
+            "supp_data": true,
+            "ndc": ["0088221905"],
+            "days_supply": 90
+        },
+        {
+            "time": "2023-01-07",
+            "cpt": [
+                "99213"
+            ],
+            "icd10dx": [
+                "E11.9",
+                "I10",
+                "F39"
+            ],
+            "md": [],
+            "pos": "11",
+            "supp_data": false,
+            "clm_id": "3",
+            "file": "visit",
+            "spec": [
+                "PCP",
+                "ProvPres"
+            ]
+        },
+        {
+            "time": "2022-12-31",
+            "snowmed": ["451061000124104"],
+            "supp_data": true,
+            "clm_id": "2",
+            "file": "proc"
+        },
+        {
+            "time": "2022-12-31",
+            "cpt": [
+                "99282",
+                "J7030"
+            ],
+            "icd10dx": [
+                "E16.2",
+                "E11.9"
+            ],
+            "md": [],
+            "pos": "23",
+            "supp_data": false,
+            "clm_id": "1",
+            "file": "visit",
+            "spec": []
+        }
+    ]
+}
