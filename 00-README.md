@@ -21,7 +21,7 @@ If you're interested in purchasing the Apollomed Velox Quality engine for use in
 
 ### Usage
 Usage is simple:
-1. Transform internal data sources `chedispy` input format. Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
+1. Transform internal data sources `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
 1. Import `sourcedefender` which is required to run the encrypted HEDIS® logic.
 2. Import a specific measure engine and choose a value-set map.
 3. Apply the `get_measure` method to member data.
