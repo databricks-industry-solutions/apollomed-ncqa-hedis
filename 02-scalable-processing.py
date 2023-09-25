@@ -18,7 +18,7 @@ spark.sql(f"CREATE SCHEMA {db}")
 
 # COMMAND ----------
 
-# MAGIC %run "./03-generate-sample-data"
+# MAGIC %run "./data/read-sample-data"
 
 # COMMAND ----------
 
@@ -105,6 +105,11 @@ res_df = res_df.withColumn(
     ))
 ).select("member_id", "result.*")
 res_df.write.mode("overwrite").saveAsTable(f"{db}.member_measure")
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT * FROM chedispy_results.member_measure
 
 # COMMAND ----------
 

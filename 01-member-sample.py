@@ -181,6 +181,7 @@ member_data["my"] = "2023"
 res = engine.get_measure(
     member=member_data
 )
+json.dump(res, open("data/HBD_result_2.json", "w"), indent=4, sort_keys=True)
 pprint(res)
 
 # COMMAND ----------
