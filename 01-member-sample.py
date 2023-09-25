@@ -8,7 +8,7 @@
 
 # MAGIC %md
 # MAGIC # A Sample Member
-# MAGIC In `data`, we have included a member sample `HBD_example_1.json` to illustrate correct formatting. For an exhaustive formatting guide, review our [public docs](https://www.postman.com/velox-by-apollomed/workspace/velox-risk-and-quality-insights/collection/24003462-05af5cad-a5dd-4e98-b4de-93930756f4df).
+# MAGIC In `data`, we have included a member sample `HBD_example_1.json` to illustrate correct formatting. For an exhaustive formatting guide, review our [public docs](https://ameh.notion.site/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce?pvs=4).
 # MAGIC
 # MAGIC ### Patient Demographics:
 # MAGIC - **Sex**: Male
