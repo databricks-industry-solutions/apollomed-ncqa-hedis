@@ -66,12 +66,14 @@ pprint(member_data)
 # MAGIC %md
 # MAGIC
 # MAGIC ### TODO - explain logistics of installing chedispy
+# MAGIC
+# MAGIC - import sourcedefender
+# MAGIC - if chedispy is not installed, import shell of chedispy if and warn user
 
 # COMMAND ----------
 
 # TODO - check that chedispy is installed
-%sh
-pip install chedispy
+import sourcedefender
 
 # COMMAND ----------
 
