@@ -2,7 +2,12 @@
 # MAGIC %md
 # MAGIC
 # MAGIC # Aggregate Analysis
-# MAGIC In this notebook, we run `03-generate-data` which duplicates our original member from `01-member-sample` with some randomized attributes. We then illustrate how to run the `HBD` via a Spark UDF. Using a UDF facilitates scaling to as many measure, measure year combinations as necessary. 
+# MAGIC In this notebook, we run `read-sample` which duplicates our original member from `01-member-sample` with some randomized attributes. We then illustrate how to run the `HBD` via a Spark UDF. Using a UDF facilitates scaling to as many measure, measure year combinations as necessary. 
+
+# COMMAND ----------
+
+if importlib.util.find_spec('chedispy') is None:
+  dbutils.notebook.exit("Stopping notebook because chedispy is not available. See results above for data reference")
 
 # COMMAND ----------
 
@@ -18,71 +23,47 @@ spark.sql(f"CREATE SCHEMA {db}")
 
 # COMMAND ----------
 
-# MAGIC %run "./data/read-sample-data"
-
-# COMMAND ----------
-
-input_df.display(100)
+# DBTITLE 1,Read sample data
+import os
+from pyspark.sql.functions import col
+from pyspark.sql.types import *
+df = (spark.read.format("csv")
+        .option("header",False)
+        .option("sep","||") #dummy separator
+        .load("file:///" + os.getcwd() + "/data/sample_data.ndjson")
+).select(col("_c0").alias("chedispy_input")).withColumn("member_id", F.expr("uuid()"))
+df.show()
 
 # COMMAND ----------
 
 # MAGIC %md
 # MAGIC
-# MAGIC ### Register UDF's
-# MAGIC We register two UDF's:
-# MAGIC - `apply_chedispy`: Load JSON data from string to a Python object, runs the HBD engine, and writes back to JSON.
-# MAGIC - `unpack_result`: Unpack relevant fields for aggregate analysis into a Spark Struct.
+# MAGIC ### Register a Spark UDF to run HEDIS engine
 
 # COMMAND ----------
 
-# Import the HBDEngine
-from chedispy.hbd import HBDEngine
-from chedispy.utils import load_dmap_default
-dmap = load_dmap_default()
-engine = HBDEngine(dmap)
-
-# COMMAND ----------
-
-from pyspark.sql import functions as F
-from pyspark.sql.types import ArrayType, BooleanType, StructType, StringType, StructField, IntegerType
-import json
-
+# DBTITLE 1,Run the HEDIS engine
 def apply_chedispy(member_data):
+  try: 
     member_dict = json.loads(member_data)
     res = engine.get_measure(
         member=member_dict
     )
     return json.dumps(res)
+  except Exception as e:
+    return  "{\"error\" : \"" + str(e) + "\"}" 
+  
+apply_chedispy_udf = F.udf(apply_chedispy, StringType())
+df2 = df.withColumn("unparsed_result", apply_chedispy_udf(col("chedispy_input")))
+df2.show()
 
-def upack_result(res_str):
-    res = json.loads(res_str)
-    if res:
-        res = [
-            {"denom": int(pred["denom"]["value"]),
-            "num": int(pred["num"]["value"]),
-            "submeasure_code": pred["measure_id"],
-            "payer": pred["payer"],
-            **pred["stratified_report"]
-            }
-            for pred in res
-        ]
-    return res
+# COMMAND ----------
 
-schema = ArrayType(
-    StructType([
-        StructField("num", IntegerType(), True),
-        StructField("denom", IntegerType(), True),
-        StructField("submeasure_code", StringType(), True),
-        StructField("payer", StringType(), True),
-        StructField("report", BooleanType(), True),
-        StructField("sex", StringType(), True),
-        StructField("race", StringType(), True),
-        StructField("ethnicity", StringType(), True),
-        StructField("race_ds", StringType(), True),
-        StructField("ethnicity_ds", StringType(), True)])
-)
-apply_chedispy_udf = F.udf(apply_chedispy, StringType()) # StructType() not possible given dynamic schema
-extract_res_udf = F.udf(upack_result, schema) # StructType() not possible given dynamic schema
+# DBTITLE 1,Parse the Result
+import pyspark.sql.functions as F
+output_schema = F.schema_of_json(df2.select('unparsed_result').first()[0])
+df3 = df2.withColumn("chedispy_output", F.from_json("unparsed_result", output_schema))
+df3.show()
 
 # COMMAND ----------
 
@@ -92,18 +73,7 @@ extract_res_udf = F.udf(upack_result, schema) # StructType() not possible given 
 
 # COMMAND ----------
 
-res_df = input_df.withColumn(
-    "chedispy_result_json", 
-    apply_chedispy_udf(
-        input_df["chedispy_input"]
-    )
-)
-res_df = res_df.withColumn(
-    "result",
-    F.explode(extract_res_udf(
-        res_df["chedispy_result_json"]
-    ))
-).select("member_id", "result.*")
+df3.select("member_id", "chedispy_output.*")
 res_df.write.mode("overwrite").saveAsTable(f"{db}.member_measure")
 
 # COMMAND ----------
