@@ -72,24 +72,36 @@ pprint(member_data)
 
 # COMMAND ----------
 
-# TODO - check that chedispy is installed
-import sourcedefender
+# MAGIC %pip install sourcedefender
 
 # COMMAND ----------
 
-# Import the HBDEngine
-from chedispy.hbd import HBDEngine
-from chedispy.utils import load_dmap_default
-dmap = load_dmap_default()
-engine = HBDEngine(dmap)
-
-# COMMAND ----------
-
-# Assess HBD logic for measurement year 2023
-member_data["my"] = "2023"
-res = engine.get_measure(
+# check that chedispy is installed and import
+import sourcedefender, importlib
+res = None
+if importlib.util.find_spec('chedispy') is None:  
+  """
+  If you DO NOT have the chedispy library yet, the following block runs to allow you to see sample output 
+  """
+  print("Apollomed's HEDIS engine is not installed on this cluster. Examples below will proceed using sample output data provided in Github")
+  res =  json.load(open('./data/HBD_result_1.json', 'r'))
+else:
+  """
+  If you do have the library, the following code can be used to run the HEDIS engine
+  """
+  from chedispy.hbd import HBDEngine
+  from chedispy.utils import load_dmap_default
+  dmap = load_dmap_default()
+  engine = HBDEngine(dmap)
+  # Assess HBD logic for measurement year 2023
+  member_data["my"] = "2023"
+  res = engine.get_measure(
     member=member_data
-)
+  )
+  
+
+# COMMAND ----------
+
 pprint(res)
 
 # COMMAND ----------
@@ -178,12 +190,25 @@ pprint(member_data)
 
 # COMMAND ----------
 
-# Assess HBD logic for measurement year 2023
-member_data["my"] = "2023"
-res = engine.get_measure(
-    member=member_data
+res = None
+if importlib.util.find_spec('chedispy') is None:  
+  """
+  If you DO NOT have the chedispy library yet, the following block runs to allow you to see sample output 
+  """
+  print("Apollomed's HEDIS engine is not installed on this cluster. Examples below will proceed using sample output data provided in Github")
+  res =  json.load(open('./data/HBD_result_2.json', 'r'))
+else:
+  """
+  If you do have the library, the following code can be used to run the HEDIS engine
+  """
+
+  # Assess HBD logic for measurement year 2023
+  member_data["my"] = "2023"
+  res = engine.get_measure(
+  member=member_data
 )
-json.dump(res, open("data/HBD_result_2.json", "w"), indent=4, sort_keys=True)
+  
+# Assess HBD logic for measurement year 2023
 pprint(res)
 
 # COMMAND ----------
@@ -191,3 +216,52 @@ pprint(res)
 print(f"There are {len(res)} reportable payer / submeasure combinations...")
 for i, val in enumerate(res, 1):
     print(f'Result #{i}, Submeasure={val["measure_id"]}, Payer={val["payer"]}, Numerator={val["num"]["value"]}, Denominator={val["denom"]["value"]}')
+
+# COMMAND ----------
+
+# MAGIC %md # Scaling for Large Data
+# MAGIC
+# MAGIC Building a Spark UDF for running at scale
+
+# COMMAND ----------
+
+if importlib.util.find_spec('chedispy') is None:
+  dbutils.notebook.exit("Stopping notebook because chedispy is not available. See results above for data reference")
+
+# COMMAND ----------
+
+# DBTITLE 1,Read in sample input data
+import os
+from pyspark.sql.functions import col
+from pyspark.sql.types import *
+df = (spark.read.format("csv")
+        .option("header",False)
+        .option("sep","||") #dummy separator
+        .load("file:///" + os.getcwd() + "/data/sample_data.ndjson")
+).select(col("_c0").alias("chedispy_input")).withColumn("member_id", F.expr("uuid()"))
+df.show()
+
+# COMMAND ----------
+
+# DBTITLE 1,UDF to run the HEDIS engine
+def apply_chedispy(member_data):
+  try: 
+    member_dict = json.loads(member_data)
+    res = engine.get_measure(
+        member=member_dict
+    )
+    return json.dumps(res)
+  except Exception as e:
+    return  "{\"error\" : \"" + str(e) + "\"}" 
+  
+apply_chedispy_udf = F.udf(apply_chedispy, StringType())
+df2 = df.withColumn("unparsed_result", apply_chedispy_udf(col("chedispy_input")))
+df2.show()
+
+# COMMAND ----------
+
+# DBTITLE 1,UDF to parse output JSON data
+import pyspark.sql.functions as F
+output_schema = F.schema_of_json(df2.select('unparsed_result').first()[0])
+df3 = df2.withColumn("chedispy_output", F.from_json("unparsed_result", output_schema))
+df3.show()
