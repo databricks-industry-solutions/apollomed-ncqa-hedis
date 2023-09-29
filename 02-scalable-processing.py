@@ -6,6 +6,7 @@
 
 # COMMAND ----------
 
+import importlib
 if importlib.util.find_spec('chedispy') is None:
   dbutils.notebook.exit("Stopping notebook because chedispy is not available. See results above for data reference")
 
