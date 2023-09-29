@@ -171,6 +171,7 @@ for i, val in enumerate(res, 1):
 # COMMAND ----------
 
 # The MCD / HBD2 result
+from pprint import pprint
 pprint(res[1])
 
 # COMMAND ----------
