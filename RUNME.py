@@ -49,7 +49,7 @@ job_json = {
                 "task_key": "apollomed_solacc_01"
             },
             {
-                 "job_cluster_key": "sample_solacc_cluster",
+                 "job_cluster_key": "apollomed_solacc_cluster",
                  "notebook_task": {
                      "notebook_path": f"02-scalable-processing"
                  },
