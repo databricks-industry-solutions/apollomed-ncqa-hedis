@@ -77,7 +77,7 @@ pprint(member_data)
 # COMMAND ----------
 
 # check that chedispy is installed and import
-import sourcedefender, importlib
+import sourcedefender, importlib, json
 res = None
 if importlib.util.find_spec('chedispy') is None:  
   """
