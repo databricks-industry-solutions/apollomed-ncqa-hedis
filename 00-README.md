@@ -21,17 +21,13 @@ If you're interested in purchasing the Apollomed Velox Quality engine for use in
 
 ### Usage
 Usage is simple:
-1. Transform internal data sources `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
-1. Import `sourcedefender` which is required to run the encrypted HEDIS® logic.
+1. Transform internal data sources to the `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
 2. Import a specific measure engine and choose a value-set map.
 3. Apply the `get_measure` method to member data.
 
 ```
-import sourcedefender
-from chedispy.hbd import HBDEngine
-from chedispy.utils import load_dmap_default
-dmap = load_dmap_default()
-engine = HBDEngine(dmap)
+from chedispy.load_engine import load_engine
+engine = load_engine("HBD")
 
 # Assess HBD logic for measurement year 2023
 member_data["my"] = "2023"

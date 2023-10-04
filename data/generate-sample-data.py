@@ -39,6 +39,7 @@ with open("HBD_example_2.json", "r") as f:
 
 import random
 import copy
+import uuid
 random.seed(SEED_VALUE)
 def gen_sample():
     rand_val = random.random()
@@ -50,6 +51,7 @@ def gen_sample():
     member_data["race1"] = random.choice(CDC_RACE_VARIABLES)
     member_data["ethn_res"] = random.choice(CDC_ETHNICITY_VARIABLES)
     member_data["my"] = "2023" # must be a string
+    member_data["member_id"] = str(uuid.uuid4())
     return member_data
 
 # COMMAND ----------
