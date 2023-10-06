@@ -64,7 +64,7 @@ else:
     """
     import json
     from chedispy.load_engine import load_engine
-    engine = load_engine(measure="hbd")
+    engine = load_engine(measure="HBD")
 
     def apply_chedispy(member_data):
         try: 
