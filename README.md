@@ -20,7 +20,7 @@ ___
 If you're interested in purchasing the Apollomed Velox Quality engine for use internally, please reach out to [da_sales@apollomed.net](mailto:da_sales@apollomed.net). If you have already contracted with ApolloMed, you will receive a python wheel file which can be installed as a [library on Databricks clusters](https://docs.databricks.com/en/libraries/cluster-libraries.html). All `chedispy` dependencies will be installed during wheel installation.
 
 ### Usage
-1. Transform internal data sources `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
+1. Transform internal data sources to `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
 2. Import a specific measure engine.
 3. Apply the `get_measure` method to member data.
 
