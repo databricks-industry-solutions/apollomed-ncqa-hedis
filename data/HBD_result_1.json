@@ -1,0 +1,538 @@
+[
+    {
+        "ce": true,
+        "denom": {
+            "evidence": {
+                "continuously_enrolled": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member is continuously enrolled within 2023-01-01 and 2023-12-31"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "has_inclusion_events": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    "2022-12-31",
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "1",
+                                    "3"
+                                ],
+                                "desc": "Diabetes in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2022-12-31"
+                                ],
+                                "claim_id": [
+                                    "1"
+                                ],
+                                "desc": "['ED'] in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "3"
+                                ],
+                                "desc": "['Outpatient'] in vsnms"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "is_anchored": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member meets anchor requirement criteria"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "matches_product_line": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "medicaid is in {'commercial', 'medicaid', 'medicare', 'exchange'}"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "meets_exclusion_criteria": {
+                    "Excl": false,
+                    "RExcl": false,
+                    "RExclD": false,
+                    "age": 66,
+                    "evidence": {
+                        "excluded": [],
+                        "included": []
+                    },
+                    "value": false
+                }
+            },
+            "value": true
+        },
+        "enrl_period": [
+            "2023-02-01",
+            "2023-12-31"
+        ],
+        "i_snp_my": false,
+        "measure_id": "HBD1",
+        "num": {
+            "evidence": {
+                "excluded": [],
+                "included": []
+            },
+            "value": false
+        },
+        "payer": "MCD",
+        "stratified_report": {
+            "ethnicity": "3",
+            "ethnicity_ds": "1",
+            "race": "4",
+            "race_ds": "1",
+            "report": true,
+            "sex": "M"
+        }
+    },
+    {
+        "ce": true,
+        "denom": {
+            "evidence": {
+                "continuously_enrolled": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member is continuously enrolled within 2023-01-01 and 2023-12-31"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "has_inclusion_events": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    "2022-12-31",
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "1",
+                                    "3"
+                                ],
+                                "desc": "Diabetes in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2022-12-31"
+                                ],
+                                "claim_id": [
+                                    "1"
+                                ],
+                                "desc": "['ED'] in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "3"
+                                ],
+                                "desc": "['Outpatient'] in vsnms"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "is_anchored": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member meets anchor requirement criteria"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "matches_product_line": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "medicaid is in {'commercial', 'medicaid', 'medicare', 'exchange'}"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "meets_exclusion_criteria": {
+                    "Excl": false,
+                    "RExcl": false,
+                    "RExclD": false,
+                    "age": 66,
+                    "evidence": {
+                        "excluded": [],
+                        "included": []
+                    },
+                    "value": false
+                }
+            },
+            "value": true
+        },
+        "enrl_period": [
+            "2023-02-01",
+            "2023-12-31"
+        ],
+        "i_snp_my": false,
+        "measure_id": "HBD2",
+        "num": {
+            "evidence": {
+                "excluded": [],
+                "included": [
+                    {
+                        "DOS": [
+                            ""
+                        ],
+                        "claim_id": [
+                            ""
+                        ],
+                        "desc": "Has diabetes indicators"
+                    }
+                ]
+            },
+            "value": true
+        },
+        "payer": "MCD",
+        "stratified_report": {
+            "ethnicity": "3",
+            "ethnicity_ds": "1",
+            "race": "4",
+            "race_ds": "1",
+            "report": true,
+            "sex": "M"
+        }
+    },
+    {
+        "ce": true,
+        "denom": {
+            "evidence": {
+                "continuously_enrolled": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member is continuously enrolled within 2023-01-01 and 2023-12-31"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "has_inclusion_events": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    "2022-12-31",
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "1",
+                                    "3"
+                                ],
+                                "desc": "Diabetes in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2022-12-31"
+                                ],
+                                "claim_id": [
+                                    "1"
+                                ],
+                                "desc": "['ED'] in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "3"
+                                ],
+                                "desc": "['Outpatient'] in vsnms"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "is_anchored": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member meets anchor requirement criteria"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "matches_product_line": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "medicare is in {'commercial', 'medicaid', 'medicare', 'exchange'}"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "meets_exclusion_criteria": {
+                    "Excl": false,
+                    "RExcl": false,
+                    "RExclD": false,
+                    "age": 66,
+                    "evidence": {
+                        "excluded": [],
+                        "included": []
+                    },
+                    "value": false
+                }
+            },
+            "value": true
+        },
+        "enrl_period": [
+            "2023-02-01",
+            "2023-12-31"
+        ],
+        "i_snp_my": false,
+        "measure_id": "HBD1",
+        "num": {
+            "evidence": {
+                "excluded": [],
+                "included": []
+            },
+            "value": false
+        },
+        "payer": "MCR",
+        "stratified_report": {
+            "ethnicity": "3",
+            "ethnicity_ds": "1",
+            "race": "4",
+            "race_ds": "1",
+            "report": true,
+            "sex": "M"
+        }
+    },
+    {
+        "ce": true,
+        "denom": {
+            "evidence": {
+                "continuously_enrolled": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member is continuously enrolled within 2023-01-01 and 2023-12-31"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "has_inclusion_events": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    "2022-12-31",
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "1",
+                                    "3"
+                                ],
+                                "desc": "Diabetes in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2022-12-31"
+                                ],
+                                "claim_id": [
+                                    "1"
+                                ],
+                                "desc": "['ED'] in vsnms"
+                            },
+                            {
+                                "DOS": [
+                                    "2023-01-07"
+                                ],
+                                "claim_id": [
+                                    "3"
+                                ],
+                                "desc": "['Outpatient'] in vsnms"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "is_anchored": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "Member meets anchor requirement criteria"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "matches_product_line": {
+                    "evidence": {
+                        "excluded": [],
+                        "included": [
+                            {
+                                "DOS": [
+                                    ""
+                                ],
+                                "claim_id": [
+                                    ""
+                                ],
+                                "desc": "medicare is in {'commercial', 'medicaid', 'medicare', 'exchange'}"
+                            }
+                        ]
+                    },
+                    "value": true
+                },
+                "meets_exclusion_criteria": {
+                    "Excl": false,
+                    "RExcl": false,
+                    "RExclD": false,
+                    "age": 66,
+                    "evidence": {
+                        "excluded": [],
+                        "included": []
+                    },
+                    "value": false
+                }
+            },
+            "value": true
+        },
+        "enrl_period": [
+            "2023-02-01",
+            "2023-12-31"
+        ],
+        "i_snp_my": false,
+        "measure_id": "HBD2",
+        "num": {
+            "evidence": {
+                "excluded": [],
+                "included": [
+                    {
+                        "DOS": [
+                            ""
+                        ],
+                        "claim_id": [
+                            ""
+                        ],
+                        "desc": "Has diabetes indicators"
+                    }
+                ]
+            },
+            "value": true
+        },
+        "payer": "MCR",
+        "stratified_report": {
+            "ethnicity": "3",
+            "ethnicity_ds": "1",
+            "race": "4",
+            "race_ds": "1",
+            "report": true,
+            "sex": "M"
+        }
+    }
+]
