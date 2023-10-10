@@ -3,46 +3,58 @@
 [![CLOUD](https://img.shields.io/badge/CLOUD-ALL-blue?logo=googlecloud&style=for-the-badge)](https://cloud.google.com/databricks)
 [![POC](https://img.shields.io/badge/POC-10_days-green?style=for-the-badge)](https://databricks.com/try-databricks)
 
-## Business Problem
-<List of the business use case the solution accelerator address>
+## Scalable, In-House Quality Measurement with an NCQA-Certified Engine
+Quality measurement is a core component of value-based care contracting. Unfortunately, data regarding quality performance are typically delivered via diversely-formatted Excel spreadsheets, acquired from various payors in non-automated ways. A recent industry shift has led to a consolidation of the data sources underlying quality metrics in *curated delta lakes*, often with comparatively stable ingestions on industry standard formats. For the first time, *it is possible for many organizations to measure their quality performance daily, at scale, using internal data sources.* The ApolloMed Velox Quality engine facilitates this use case, allowing certified HEDIS measures to be executed in parallel with a simple to use python library, `chedispy` (certified-hedispy).
 
-## Scope
-<How we expect the user to use this content>
-
-___
-<john.doe@databricks.com>
-
+In this solution accelerator, we illustrate how to use the ApolloMed Velox Quality engine to:
+1. `01-member-sample`: Generate a [HEDIS-certified HBD](https://www.ncqa.org/hedis/measures/comprehensive-diabetes-care/) measure result based on a simple JSON data source
+2. `02-scalable-processing`: Apply the quality engine to a larger record-set and analyze the results
 ___
 
-
-IMAGE TO REFERENCE ARCHITECTURE
+![image](https://velox-public-image.s3.amazonaws.com/quality_engine_diagram.png)
 
 ___
+## Chedispy (Certified HEDIS® Measures)
+
+### Installation
+If you're interested in purchasing the Apollomed Velox Quality engine for use internally, please reach out to [da_sales@apollomed.net](mailto:da_sales@apollomed.net). If you have already contracted with ApolloMed, you will receive a python wheel file which can be installed as a [library on Databricks clusters](https://docs.databricks.com/en/libraries/cluster-libraries.html). All `chedispy` dependencies will be installed during wheel installation.
+
+### Usage
+1. Transform internal data sources `chedispy` input format (JSON). Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
+2. Import a specific measure engine.
+3. Apply the `get_measure` method to member data.
+
+```
+from chedispy.load_engine import load_engine
+engine = load_engine(measure="HBD")
+res = engine.get_measure(
+    member=member_data
+)
+```
+
+### Data Sources
+`member_data` is represented as JSON and is assumed to be a combination of the following sources. Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
+
+| Category                 | Description                                                                                                                         | Typical Data Origin                                                                                                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Member Demographics      | Attributes which do not change, or which change slowly, e.g. date of birth, race/ethnicity, etc.                                    | Payer and Health system registration systems                                                                                                                                |
+| Eligibility / Enrollment | Data representing a member's enrollment with a payer during a given month. Sometimes called a "member month", or "effective month". | Payer Enrollment Data                                                                                                                                                       |
+| Visit                    | Visits correspond essentially to claims. They typically contain service dates, procedure codes, and associated diagnosis codes.     | Payer Claims                                                                                                                                                                |
+| Procedure                | Procedures ordered and / or completed in health system or clinical environment, whether or not a claim was filed.                   | EHR Feed                                                                                                                                                                    |
+| Pharmacy Retail          | Prescriptions picked up or received via mail from a retail pharmacy                                                                 | Retail Pharmacies, Payer Claims, or HIE                                                                                                                                     |
+| Pharmacy Clinical        | Prescriptions dispensed and / or administered in a clinical environment.                                                            | EHR Feed                                                                                                                                                                    |
+| Diagnosis                | Diagnoses codes assigned within an EHR. Note, these may have varied degrees of certainty.                                           | EHR Feed                                                                                                                                                                    |
+| Observation              | Varied types of tests, labs and monitoring (e.g. vital signs)                                                                       | EHR Feed                                                                                                                                                                    |
+| Lab                      | Lab results typically originating from a health system or independent lab vendor.                                                   | Lab vendor or HIE                                                                                                                                                           |
+
+---
+
+### License
 
 &copy; 2022 Databricks, Inc. All rights reserved. The source in this notebook is provided subject to the Databricks License [https://databricks.com/db-license-source].  All included or referenced third party libraries are subject to the licenses set forth below.
 
-| library                                | description             | license    | source                                              |
+| Library Name   | Library License | Library License URL |  Library Source URL |
 |----------------------------------------|-------------------------|------------|-----------------------------------------------------|
-| PyYAML                                 | Reading Yaml files      | MIT        | https://github.com/yaml/pyyaml                      |
+| Apache Spark     | Apache License 2.0 | 	https://github.com/apache/spark/blob/master/LICENSE | 	https://github.com/apache/spark/tree/master/python/pyspark |
+| `chedispy` | [Proprietary License - Apollomed Medical Holdings Inc.](https://www.apollomed.net/) | Reach out to [da_sales@apollomed.net](mailto:da_sales@apollomed.net) | |
 
-## Getting started
-
-Although specific solutions can be downloaded as .dbc archives from our websites, we recommend cloning these repositories onto your databricks environment. Not only will you get access to latest code, but you will be part of a community of experts driving industry best practices and re-usable solutions, influencing our respective industries. 
-
-<img width="500" alt="add_repo" src="https://user-images.githubusercontent.com/4445837/177207338-65135b10-8ccc-4d17-be21-09416c861a76.png">
-
-To start using a solution accelerator in Databricks simply follow these steps: 
-
-1. Clone solution accelerator repository in Databricks using [Databricks Repos](https://www.databricks.com/product/repos)
-2. Attach the `RUNME` notebook to any cluster and execute the notebook via Run-All. A multi-step-job describing the accelerator pipeline will be created, and the link will be provided. The job configuration is written in the RUNME notebook in json format. 
-3. Execute the multi-step-job to see how the pipeline runs. 
-4. You might want to modify the samples in the solution accelerator to your need, collaborate with other users and run the code samples against your own data. To do so start by changing the Git remote of your repository  to your organization’s repository vs using our samples repository (learn more). You can now commit and push code, collaborate with other user’s via Git and follow your organization’s processes for code development.
-
-The cost associated with running the accelerator is the user's responsibility.
-
-
-## Project support 
-
-Please note the code in this project is provided for your exploration only, and are not formally supported by Databricks with Service Level Agreements (SLAs). They are provided AS-IS and we do not make any guarantees of any kind. Please do not submit a support ticket relating to any issues arising from the use of these projects. The source in this project is provided subject to the Databricks [License](./LICENSE). All included or referenced third party libraries are subject to the licenses set forth below.
-
-Any issues discovered through the use of this project should be filed as GitHub Issues on the Repo. They will be reviewed as time permits, but there are no formal SLAs for support. 

@@ -8,7 +8,7 @@
 
 # MAGIC %md
 # MAGIC # A Sample Member
-# MAGIC In `data`, we have included a member sample `HBD_example_1.json` to illustrate correct formatting. For an exhaustive formatting guide, review our [public docs](https://www.postman.com/velox-by-apollomed/workspace/velox-risk-and-quality-insights/collection/24003462-05af5cad-a5dd-4e98-b4de-93930756f4df).
+# MAGIC In `data`, we have included a member sample `HBD_example_1.json` to illustrate correct formatting. For an exhaustive formatting guide, review our [public docs](https://ameh.notion.site/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce?pvs=4).
 # MAGIC
 # MAGIC ### Patient Demographics:
 # MAGIC - **Sex**: Male
@@ -63,31 +63,30 @@ pprint(member_data)
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC
-# MAGIC ### TODO - explain logistics of installing chedispy
+# check that chedispy is installed and import
+import importlib, json
+if importlib.util.find_spec('chedispy') is None:  
+  """
+  If you DO NOT have the chedispy library yet, the following block runs to allow you to see sample output 
+  """
+  print("ApolloMed's HEDIS engine is not installed on this cluster. Examples below will proceed using sample output data provided in Github")
+  res =  json.load(open('./data/HBD_result_1.json', 'r'))
+else:
+  """
+  If you do have the library, the following code can be used to run the HEDIS engine
+  """
+  from chedispy.load_engine import load_engine
+  engine = load_engine(measure="HBD")
 
-# COMMAND ----------
-
-# TODO - check that chedispy is installed
-%sh
-pip install chedispy
-
-# COMMAND ----------
-
-# Import the HBDEngine
-from chedispy.hbd import HBDEngine
-from chedispy.utils import load_dmap_default
-dmap = load_dmap_default()
-engine = HBDEngine(dmap)
-
-# COMMAND ----------
-
-# Assess HBD logic for measurement year 2023
-member_data["my"] = "2023"
-res = engine.get_measure(
+  # Assess HBD logic for measurement year 2023
+  member_data["my"] = "2023"
+  res = engine.get_measure(
     member=member_data
-)
+  )
+  
+
+# COMMAND ----------
+
 pprint(res)
 
 # COMMAND ----------
@@ -157,6 +156,7 @@ for i, val in enumerate(res, 1):
 # COMMAND ----------
 
 # The MCD / HBD2 result
+from pprint import pprint
 pprint(res[1])
 
 # COMMAND ----------
@@ -176,11 +176,25 @@ pprint(member_data)
 
 # COMMAND ----------
 
-# Assess HBD logic for measurement year 2023
-member_data["my"] = "2023"
-res = engine.get_measure(
+res = None
+if importlib.util.find_spec('chedispy') is None:  
+  """
+  If you DO NOT have the chedispy library yet, the following block runs to allow you to see sample output 
+  """
+  print("ApolloMed's HEDIS engine is not installed on this cluster. Examples below will proceed using sample output data provided in Github")
+  res =  json.load(open('./data/HBD_result_2.json', 'r'))
+else:
+  """
+  If you do have the library, the following code can be used to run the HEDIS engine
+  """
+
+  # Assess HBD logic for measurement year 2023
+  member_data["my"] = "2023"
+  res = engine.get_measure(
     member=member_data
 )
+  
+# Assess HBD logic for measurement year 2023
 pprint(res)
 
 # COMMAND ----------
