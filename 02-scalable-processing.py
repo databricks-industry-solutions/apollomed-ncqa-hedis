@@ -13,9 +13,10 @@
 # COMMAND ----------
 
 # DBTITLE 0,Create a new Database for Test Data
-db = "chedispy_results"
-spark.sql(f"DROP SCHEMA IF EXISTS {db} CASCADE")
-spark.sql(f"CREATE SCHEMA {db}")
+schema = "chedispy_results"
+#spark.sql(f"USE <catalog>.<database>") uncomment/fill in to specify schema location
+spark.sql(f"DROP SCHEMA IF EXISTS {schema} CASCADE")
+spark.sql(f"CREATE SCHEMA {schema}")
 
 # COMMAND ----------
 
