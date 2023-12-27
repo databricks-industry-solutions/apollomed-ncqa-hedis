@@ -124,11 +124,11 @@ df4.display()
 
 # COMMAND ----------
 
-df4.write.mode("overwrite").saveAsTable(f"{db}.member_measure")
+df4.write.mode("overwrite").saveAsTable(f"{schema}.member_measure")
 
 # COMMAND ----------
 
-spark.sql(f"SELECT * FROM {db}.member_measure").display()
+spark.sql(f"SELECT * FROM {schema}.member_measure").display()
 
 # COMMAND ----------
 
@@ -149,7 +149,7 @@ spark.sql(
 SELECT 
   measure_id, payer,
   SUM(CAST(num.value AS INT)) / SUM(CAST(denom.value AS INT)) AS performance_rate
-FROM {db}.member_measure
+FROM {schema}.member_measure
 WHERE stratified_report.report = true
 GROUP BY measure_id, payer
 ORDER BY measure_id, payer, SUM(CAST(num.value AS INT)) / SUM(CAST(denom.value AS INT)) ASC
@@ -163,7 +163,7 @@ spark.sql(
 SELECT 
   measure_id, payer, stratified_report.race,
   SUM(CAST(num.value AS INT)) / SUM(CAST(denom.value AS INT)) AS performance_rate
-FROM {db}.member_measure
+FROM {schema}.member_measure
 WHERE stratified_report.report = true
 GROUP BY measure_id, payer, stratified_report.race
 ORDER BY measure_id, payer, SUM(CAST(num.value AS INT)) / SUM(CAST(denom.value AS INT)) ASC
