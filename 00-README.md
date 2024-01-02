@@ -40,6 +40,9 @@ pprint(res)
 ### Data Sources
 `member_data` is represented as JSON and is assumed to be a combination of the following sources. Find an exhaustive formatting guide [here](https://ameh.notion.site/ameh/ApolloMed-Quality-Engine-Documentation-3250d28383fa4a3a9cf7eab6b41296ce)
 
+### Running This Solution Accelerator
+Note, this solution accelerator *must* be run a Databricks cluster in [single-user](https://docs.databricks.com/en/compute/configure.html) access mode.
+
 | Category                 | Description                                                                                                                         | Typical Data Origin                                                                                                                                                         |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Member Demographics      | Attributes which do not change, or which change slowly, e.g. date of birth, race/ethnicity, etc.                                    | Payer and Health system registration systems                                                                                                                                |
